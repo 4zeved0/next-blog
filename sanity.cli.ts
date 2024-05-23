@@ -1,15 +1,12 @@
 import { defineCliConfig } from 'sanity/cli'
 
-const projectId = process.env.SANITY_PROJECT_ID
-const dataset = process.env.SANITY_STUDIO_DATASET
-
 export default defineCliConfig({
   api: {
-    projectId: projectId,
-    dataset: dataset,
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+    dataset: process.env.SANITY_STUDIO_DATASET,
 
   }, server: {
     hostname: "localhost",
-    port: 3333,
+    port: 3000,
   },
 })

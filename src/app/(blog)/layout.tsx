@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { VisualEditing } from "next-sanity"
 import { draftMode } from "next/headers"
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-slate-100 min-h-screen relative">
       <body className={inter.className}>
+        <Navbar />
         {draftMode().isEnabled && (
           <div>
             <a className="p-4 bg-blue-300 block" href="/api/disable-draft">
@@ -26,7 +29,8 @@ export default function RootLayout({
             </a>
           </div>
         )}
-        <main>{children}</main>
+        <Footer />
+        <main className="max-w-7xl mx-auto pt-16">{children}</main>
         {draftMode().isEnabled && <VisualEditing />}</body>
     </html>
   );
