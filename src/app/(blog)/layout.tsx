@@ -5,6 +5,7 @@ import { VisualEditing } from "next-sanity"
 import { draftMode } from "next/headers"
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 

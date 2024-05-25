@@ -7,8 +7,7 @@ import { SanityDocument } from "next-sanity"
 import { projectId, dataset } from "../../../sanity/env"
 
 
-const urlFor = (source: any) =>
-  imageUrlBuilder({ projectId, dataset }).image(source)
+const urlFor = (source: any) => imageUrlBuilder({ projectId, dataset }).image(source)
 
 export default function Post({ post }: { post: SanityDocument }) {
   const { title, mainImage, body } = post

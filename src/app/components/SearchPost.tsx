@@ -23,7 +23,7 @@ export default function SearchPost({ posts }: { posts: SanityDocument[] }) {
   }
 
   return (
-    <>
+    <div key={'oi'}>
       <div className="flex items-center justify-center mt-5 border-transparent mb-5">
         <input
           type="text"
@@ -34,24 +34,18 @@ export default function SearchPost({ posts }: { posts: SanityDocument[] }) {
         />
       </div>
 
-      <ul>
-        {postsToDisplay.map((post) => {
-          const formattedDate: string = format(new Date(post._createdAt), 'dd/MM/yyyy');
-
-          return (
-
-            <li key={post.id} className='max-h-40'>
-              <Link href={post.slug.current}>
-                <div className="py-4 px-2 bg-slate-300 rounded-md mb-2 hover:bg-slate-400 flex justify-between">
-                  <h2>{post.title}</h2>
-                  <p className="text-sm text-slate-300 bg-slate-600 rounded-md px-2 py-1">postado em: {formattedDate}</p>
-                </div>
-              </Link>
-            </li>
-          )
-        }
+      {postsToDisplay.map((post) => {
+        const formattedDate: string = format(new Date(post._createdAt), 'dd/MM/yyyy');
+        return (
+          <div key={post._id} className='max-h-40'>
+            <Link href={post.slug.current}>
+              <div className="py-4 px-2 bg-slate-300 rounded-md mb-2 hover:bg-slate-400 flex justify-between items-center">
+                <h2 className='w-full md:w-auto'>{post.title}</h2>
+                <p className="text-center md:text-left text-sm text-slate-300 bg-slate-600 rounded-md px-2 py-1">postado em: {formattedDate}</p>
+              </div>
+            </Link>
+          </div>
         )
-        }
-      </ul >
-    </>);
+      })}
+    </div>);
 }
