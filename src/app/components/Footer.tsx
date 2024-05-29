@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="fixed bottom-0 flex items-center justify-between px-5 w-screen h-10 border-t-[1px] bg-slate-100">
+    <div className="absolute bottom-0 left-0 flex items-center justify-between px-5 w-screen h-10 border-t-[1px] bg-slate-100">
       <h1 className="text-slate-500 text-sm">Copyright © 2024 - Azevedo</h1>
       <div className="flex">
         <Link href="https://github.com/4zeved0" target="_blank" className="ml-4 text-slate-800 text-sm flex gap-2 items-center">

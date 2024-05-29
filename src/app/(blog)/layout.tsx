@@ -5,7 +5,6 @@ import { VisualEditing } from "next-sanity"
 import { draftMode } from "next/headers"
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-slate-100 min-h-screen relative">
+    <html lang="en" className="bg-slate-100 min-h-screen relative overflow-x-hidden">
       <body className={inter.className}>
         <Navbar />
         {draftMode().isEnabled && (

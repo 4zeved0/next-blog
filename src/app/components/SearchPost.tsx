@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { SanityDocument } from "next-sanity";
 import Link from 'next/link';
-import { format } from 'date-fns';
+import { formattedDate } from './FormatDate';
 
 export default function SearchPost({ posts }: { posts: SanityDocument[] }) {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -17,14 +17,14 @@ export default function SearchPost({ posts }: { posts: SanityDocument[] }) {
 
   let postsToDisplay: SanityDocument[];
   if (searchTerm === '') {
-    postsToDisplay = posts.slice(0, 2);
+    postsToDisplay = posts
   } else {
-    postsToDisplay = filteredPosts;
+    postsToDisplay = filteredPosts.slice(0, 2);
   }
 
   return (
-    <div key={'oi'}>
-      <div className="flex items-center justify-center mt-5 border-transparent mb-5">
+    <div className='overflow-auto h-full mb-5'>
+      <div className="flex items-center justify-center border-transparent mb-5 md:w-[99%] w-[98%]">
         <input
           type="text"
           placeholder="Pesquisar"
@@ -35,13 +35,12 @@ export default function SearchPost({ posts }: { posts: SanityDocument[] }) {
       </div>
 
       {postsToDisplay.map((post) => {
-        const formattedDate: string = format(new Date(post._createdAt), 'dd/MM/yyyy');
         return (
-          <div key={post._id} className='max-h-40'>
+          <div key={post._id} className='max-h-40 md:w-[99%] w-[98%]'>
             <Link href={post.slug.current}>
-              <div className="py-4 px-2 bg-slate-300 rounded-md mb-2 hover:bg-slate-400 flex justify-between items-center">
+              <div className="py-4 px-2 bg-slate-300 rounded-md mb-3 hover:bg-slate-400 flex justify-between items-center">
                 <h2 className='w-full md:w-auto'>{post.title}</h2>
-                <p className="text-center md:text-left text-sm text-slate-300 bg-slate-600 rounded-md px-2 py-1">postado em: {formattedDate}</p>
+                <p className="text-center md:text-left text-sm text-slate-300 bg-slate-600 rounded-md px-2 py-1">postado em: {formattedDate(post._createdAt)}</p>
               </div>
             </Link>
           </div>

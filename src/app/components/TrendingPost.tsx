@@ -1,6 +1,5 @@
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
-import { format } from 'date-fns';
 export interface Category {
   _id?: string;
   title?: string | undefined;
@@ -25,7 +24,6 @@ export default function TrendingPost({ posts }: { posts: Post[] }) {
       {posts?.length > 0 ? (
         posts.map((post) => {
           const hasCategories = post.categories && post.categories.length > 0;
-          const formattedDate: string = format(new Date(post._createdAt), 'dd/MM/yyyy');
 
           return (
             <div key={post._id}>
